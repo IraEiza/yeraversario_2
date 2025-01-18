@@ -4,13 +4,18 @@ export const useQuizStore = defineStore('quiz', {
   state: () => ({
     answers: [],
     currentUser: '',
-    isYeray: false
+    isYeray: false,
+    ranking: []
   }),
   
   actions: {
     setUser(name, isYeray) {
       this.currentUser = name
       this.isYeray = isYeray
+    },
+
+    setUserName(name) {
+      this.currentUser = name
     },
     
     addAnswer(questionId, answer) {
@@ -21,15 +26,47 @@ export const useQuizStore = defineStore('quiz', {
       })
     },
     
-    getResults() {
-      // Filtrar las respuestas de Yeray y otros usuarios
-      const yerayAnswers = this.answers.filter(a => a.isYeray)
-      const otherAnswers = this.answers.filter(a => !a.isYeray)
-      
-      return {
-        yerayAnswers,
-        otherAnswers
+    async saveAnswers() {
+      const sheetName = this.isYeray ? 'YerayAnswers' : 'UserAnswers';
+
+      try {
+        // Crear el payload con las respuestas
+        const payload = {
+          sheetName, // Nombre de la hoja
+          name: this.currentUser, // Usuario actual
+          answers: this.answers.map(answer => ({
+            questionId: answer.questionId,
+            answer: answer.answer
+          }))
+        };
+
+        // Enviar datos al Web App
+        const response = await fetch('https://script.google.com/macros/s/AKfycby_RmJp8D8fBVz0D3N1C7jXiaLV6K8nyQtnxlyh8e8p3d11o4LfubtUYU99MnPgOXJ4/exec', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (response.ok) {
+          console.log(`Respuestas guardadas en ${sheetName}`);
+        } else {
+          console.error('Error al guardar las respuestas:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error al conectar con el Web App:', error);
       }
+    },
+
+    async compareAnswers() {
+      if (!this.isYeray) return
+
+      this.ranking = [
+        { name: 'Ana', score: 95, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Ana' },
+        { name: 'Carlos', score: 85, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Carlos' },
+        { name: 'María', score: 75, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Maria' }
+      ]
     }
   }
 })

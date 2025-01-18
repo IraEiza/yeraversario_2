@@ -37,10 +37,10 @@ const handleChoice = (isYeray) => {
 
 <template>
   <div class="min-h-screen bg-black flex flex-col items-center justify-center">
-    <img src="https://static.wikia.nocookie.net/starwars/images/c/c3/Yoda_TPM_RotS.png" alt="Yoda"
+    <img src="../assets/yoda.webp" alt="Yoda"
       class="yoda-image w-64 opacity-0" />
 
-    <div v-if="showQuestion" class="question mt-8 text-2xl opacity-0 font-bold text-white">
+    <div v-if="showQuestion" class="question mt-8 text-2xl opacity-0 font-bold font-star-wars text-yellow-400">
       ¿Yeray eres, hmm?
     </div>
 

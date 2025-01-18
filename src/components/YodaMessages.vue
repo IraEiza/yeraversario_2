@@ -24,36 +24,36 @@ const guestMessages = [
 
 const messages = computed(() => store.isYeray ? yerayMessages : guestMessages)
 
-const emit = defineEmits(['complete'])
-
 const showNextMessage = () => {
   if (currentMessageIndex.value < messages.value.length - 1) {
     gsap.to('.message', {
       opacity: 0,
-      duration: 1,
+      duration: 0.5,
       onComplete: () => {
         currentMessageIndex.value++
         gsap.to('.message', {
           opacity: 1,
-          duration: 1,
+          duration: 0.5,
           onComplete: () => {
-            // Programar el próximo mensaje después de 2 segundos
             setTimeout(showNextMessage, 2000)
           }
         })
       }
     })
   } else {
-    emit('complete')
+    setTimeout(() => {
+      emit('complete')
+    }, 2000)
   }
 }
+
+const emit = defineEmits(['complete'])
 
 onMounted(() => {
   gsap.to('.message', {
     opacity: 1,
-    duration: 1,
+    duration: 0.5,
     onComplete: () => {
-      // Iniciar el ciclo automático
       setTimeout(showNextMessage, 2000)
     }
   })
@@ -61,9 +61,23 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-black flex flex-col items-center justify-center white">
-    <div class="message text-3xl opacity-0 text-center px-4">
+  <div class="min-h-screen bg-black flex flex-col items-center justify-center text-white">
+    <div class="message text-3xl opacity-0 text-center px-4 font-star-wars text-yellow-400">
       {{ messages[currentMessageIndex] }}
     </div>
   </div>
 </template>
+
+<style scoped>
+.font-star-wars {
+  font-family: "SF Distant Galaxy", system-ui, -apple-system, sans-serif;
+  letter-spacing: 2px;
+}
+
+@font-face {
+  font-family: 'SF Distant Galaxy';
+  src: url('https://db.onlinewebfonts.com/t/0c724f6aa457310440cf8949c615cbd7.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+</style>
