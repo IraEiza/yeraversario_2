@@ -16,11 +16,15 @@ const yerayMessages = [
 ]
 
 const guestMessages = [
-  "Un invitado tenemos, hmm...",
-  "Conocer a Yeray deseas tú...",
-  "Prueba superar deberás...",
-  "Preparado estás..."
-]
+  "¡Por supuesto que no eres!",
+  "Hoy, nuestro Yera, 2 años en Reboot cumple, sí...",
+  "¿Sabías tú esto?",
+  "Cómo el tiempo vuela... hmm...",
+  "Suficiente para bien conocerlo...",
+  "¿O tal vez no...? Hmm...",
+  "Comprobarlo, deseas tú, ¿verdad?",
+  "¡Empecemos!"
+];
 
 const messages = computed(() => store.isYeray ? yerayMessages : guestMessages)
 

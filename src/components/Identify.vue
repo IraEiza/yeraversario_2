@@ -33,17 +33,17 @@ const handleNameSubmit = () => {
   <div class="question-container identify min-h-screen bg-black flex flex-col items-center justify-center">
     <div class="question-content p-8 rounded-lg text-white max-w-2xl w-full">
         <h2 class="text-2xl mb-6 font-star-wars text-yellow-400">Identifícate, joven Padawan</h2>
-        <div class="flex gap-4">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-4 w-full max-w-2xl mx-auto">
           <input 
             v-model="userName"
             type="text"
-            class="flex-1 px-4 py-2 rounded bg-gray-800 text-yellow-400 border border-yellow-400 focus:border-blue-500 outline-none placeholder-yellow-600"
+            class="flex-1 px-4 py-2 rounded bg-gray-800/80 text-yellow-400 border border-yellow-400 focus:border-blue-500 outline-none placeholder-yellow-600"
             placeholder="Tu nombre, escribe"
             @keyup.enter="handleNameSubmit"
           />
           <button
             @click="handleNameSubmit"
-            class="px-6 py-2 bg-yellow-400 text-black rounded hover:bg-yellow-500 font-bold transition-colors duration-300"
+            class="w-full sm:w-auto px-6 py-2 bg-yellow-400 text-black rounded hover:bg-yellow-500 font-bold transition-colors duration-300"
           >
             Continuar
           </button>

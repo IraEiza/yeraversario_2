@@ -114,10 +114,10 @@ export const questions = [
     type: 'text',
     question: "¿Cuál es el nombre COMPLETO de Yera?",
   },
-  {
+/*   {
     id: 12,
     type: 'text',
     question: "Describe a Yera en una palabra",
-  }
+  } */
 ]
   

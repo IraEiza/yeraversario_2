@@ -33,15 +33,17 @@ const closeWindow = () => {
       </div>
     </div>
 
-
     <!-- Contenido -->
     <div class="relative z-10 min-h-screen flex flex-col items-center justify-center text-center p-4">
       <h1 class="text-4xl font-star-wars text-yellow-400 mb-6">
         ¡Gracias por participar, joven Padawan!
       </h1>
       <img src="../assets/darth_vader.avif" alt="Yoda" class="yoda-image w-64 opacity-1 my-8" />
-      <p class="text-xl text-yellow-300 my-8">
-        Que la fuerza te acompañe <img src="../assets/laser.png" class="w-8 mx-4 inline"> ¡Nos vemos mañana, >:) !
+      <!-- Mensaje adaptado -->
+      <p class="text-xl text-yellow-300 my-8 flex flex-col sm:flex-row sm:items-center sm:justify-center gap-2">
+        <span>Que la fuerza te acompañe</span>
+        <img src="../assets/laser.png" class="w-8 mx-0 sm:mx-4 self-center">
+        <span>¡Nos vemos mañana, >:) !</span>
       </p>
       <button @click="closeWindow"
         class="px-6 py-3 bg-yellow-400 text-black rounded hover:bg-yellow-500 font-bold transition-colors duration-300 mt-6">
@@ -50,6 +52,7 @@ const closeWindow = () => {
     </div>
   </div>
 </template>
+
 
 <style scoped>
 @keyframes twinkle {

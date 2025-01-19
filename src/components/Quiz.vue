@@ -119,13 +119,13 @@ const emit = defineEmits(['complete'])
         </template>
 
         <template v-else-if="questions[currentQuestion].type === 'text'">
-          <div class="flex flex-col gap-4">
+          <div class="flex flex-col sm:flex-row sm:items-center gap-4 w-full max-w-2xl mx-auto">
             <input type="text" v-model="textInput"
-              class="px-4 py-2 rounded bg-gray-800/80 text-yellow-400 border border-yellow-400 focus:border-blue-500 outline-none placeholder-yellow-600"
+              class="flex-1 px-4 py-2 rounded bg-gray-800/80 text-yellow-400 border border-yellow-400 focus:border-blue-500 outline-none placeholder-yellow-600"
               placeholder="Tu respuesta, escribe" @keyup.enter="textInput && handleTextAnswer($event.target.value)" />
             <button
               @click="$event.target.previousElementSibling.value && handleTextAnswer($event.target.previousElementSibling.value)"
-              class="px-6 py-2 bg-yellow-400 text-black rounded hover:bg-yellow-500 font-bold transition-colors duration-300">
+              class="w-full sm:w-auto px-6 py-2 bg-yellow-400 text-black rounded hover:bg-yellow-500 font-bold transition-colors duration-300">
               Siguiente
             </button>
           </div>
