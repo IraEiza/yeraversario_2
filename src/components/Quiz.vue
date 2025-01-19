@@ -75,7 +75,8 @@ onMounted(() => {
     rotation: 360,
     duration: 200,
     repeat: -1,
-    ease: 'none'
+    ease: 'none',
+    overwrite: false,
   })
 })
 
@@ -96,8 +97,6 @@ const emit = defineEmits(['complete'])
         </div>
       </div>
     </div>
-
-
 
     <div v-show="isLoading" class="spinner fixed inset-0 bg-black/70 flex items-center justify-center z-50">
       <!-- Spinner -->
