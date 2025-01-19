@@ -6,15 +6,17 @@ import { questions } from '../assets/questions.js'
 
 const store = useQuizStore()
 const currentQuestion = ref(0)
-const userName = ref('')
 const showNameInput = ref(true)
 const formSubmitted = ref(false)
+const textInput = ref('');
+
 
 
 const handleTextAnswer = (answer) => {
-  store.addAnswer(questions[currentQuestion.value].id, answer)
-  nextQuestion()
-}
+  store.addAnswer(questions[currentQuestion.value].id, answer);
+  textInput.value = '';
+  nextQuestion();
+};
 
 const handleMultipleChoice = (answer) => {
   store.addAnswer(questions[currentQuestion.value].id, answer)
@@ -56,19 +58,6 @@ const submitForm = async () => {
   emit('complete');
 };
 
-
-
-const handleNameSubmit = () => {
-  if (userName.value.trim()) {
-    store.setUserName(userName.value)
-    showNameInput.value = false
-    gsap.to('.question-container', {
-      opacity: 1,
-      y: 0,
-      duration: 0.5
-    })
-  }
-}
 
 onMounted(() => {
   gsap.to('.stars', {
@@ -113,9 +102,10 @@ const emit = defineEmits(['complete'])
         <template v-else-if="questions[currentQuestion].type === 'text'">
           <div class="flex flex-col gap-4">
             <input type="text"
+              v-model="textInput"
               class="px-4 py-2 rounded bg-gray-800/80 text-yellow-400 border border-yellow-400 focus:border-blue-500 outline-none placeholder-yellow-600"
               placeholder="Tu respuesta, escribe"
-              @keyup.enter="$event.target.value && handleTextAnswer($event.target.value)" />
+              @keyup.enter="textInput && handleTextAnswer($event.target.value)" />
             <button
               @click="$event.target.previousElementSibling.value && handleTextAnswer($event.target.previousElementSibling.value)"
               class="px-6 py-2 bg-yellow-400 text-black rounded hover:bg-yellow-500 font-bold transition-colors duration-300">

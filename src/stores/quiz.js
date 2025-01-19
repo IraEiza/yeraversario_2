@@ -28,7 +28,7 @@ export const useQuizStore = defineStore('quiz', {
     
     async saveAnswers() {
       const sheetName = this.isYeray ? 'YerayAnswers' : 'UserAnswers';
-
+    
       try {
         // Crear el payload con las respuestas
         const payload = {
@@ -39,18 +39,19 @@ export const useQuizStore = defineStore('quiz', {
             answer: answer.answer
           }))
         };
-
+    
         // Enviar datos al Web App
-        const response = await fetch('https://script.google.com/macros/s/AKfycbxjTJi0CmYlz4PCD0oVx7-gjj0GXH6H7SdPNeoRunSyrZSJzleowxvj63cMW8Emtgyt/exec', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbzqIKAvEYyEirVlR46_fXm63iG8Y4W1jmtC9qGg9bl35_HGdfGZo63z_aTVPHw2xXag/exec', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(payload)
         });
-
+    
         if (response.ok) {
-          console.log(`Respuestas guardadas en ${sheetName}`);
+          const result = await response.json(); // Parsear respuesta del servidor
+          console.log(`Respuestas guardadas en ${sheetName}`, result);
         } else {
           console.error('Error al guardar las respuestas:', response.statusText);
         }
@@ -58,6 +59,7 @@ export const useQuizStore = defineStore('quiz', {
         console.error('Error al conectar con el Web App:', error);
       }
     },
+    
 
     async compareAnswers() {
       if (!this.isYeray) return
