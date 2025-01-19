@@ -19,7 +19,7 @@ const closeWindow = () => {
 </script>
 
 <template>
-  <div class="min-h-screen relative overflow-hidden">
+  <div class="h-[100dvh] flex flex-col justify-center relative overflow-hidden">
     <!-- Fondo animado de Star Wars -->
     <div class="absolute inset-0 bg-black flex items-center justify-center overflow-hidden">
       <div class="stars w-[200%] h-[200%] rounded-full">
@@ -34,7 +34,7 @@ const closeWindow = () => {
     </div>
 
     <!-- Contenido -->
-    <div class="relative z-10 min-h-screen flex flex-col items-center justify-between text-center px-4 py-10">
+    <div class="relative z-10 h-[100dvh] max-h-[650px] flex flex-col items-center justify-between text-center px-4 py-10">
       <h1 class="text-3xl font-star-wars text-yellow-400 mb-6">
         ¡Gracias por participar, joven Padawan!
       </h1>
