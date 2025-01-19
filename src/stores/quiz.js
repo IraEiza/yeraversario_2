@@ -27,7 +27,7 @@ export const useQuizStore = defineStore('quiz', {
     },
     
     async saveAnswers() {
-      const sheetName = this.isYeray ? 'YerayAnswers' : 'UserAnswers';
+      const sheetName = this.isYeray ? 'YerasAnswers' : 'TeamAnswers';
     
       try {
         // Crear el payload con las respuestas
@@ -41,11 +41,8 @@ export const useQuizStore = defineStore('quiz', {
         };
     
         // Enviar datos al Web App
-        const response = await fetch('https://script.google.com/macros/s/AKfycbzqIKAvEYyEirVlR46_fXm63iG8Y4W1jmtC9qGg9bl35_HGdfGZo63z_aTVPHw2xXag/exec', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbwlDN-3ejrSH4DzdXXxaSpoLJYS0Cf4HYKoqPsB01PM9R25fMKrFHRiS4bvi1Zy3ev3/exec', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
           body: JSON.stringify(payload)
         });
     
