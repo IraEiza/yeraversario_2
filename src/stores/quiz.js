@@ -48,7 +48,6 @@ export const useQuizStore = defineStore('quiz', {
     
         if (response.ok) {
           const result = await response.json(); // Parsear respuesta del servidor
-          console.log(`Respuestas guardadas en ${sheetName}`, result);
         } else {
           console.error('Error al guardar las respuestas:', response.statusText);
         }

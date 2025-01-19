@@ -9,8 +9,7 @@ const currentQuestion = ref(0)
 const showNameInput = ref(true)
 const formSubmitted = ref(false)
 const textInput = ref('');
-
-
+const isLoading = ref(false);
 
 const handleTextAnswer = (answer) => {
   store.addAnswer(questions[currentQuestion.value].id, answer);
@@ -43,8 +42,18 @@ const nextQuestion = () => {
   }
 }
 
+const showSpinner = () => {
+  gsap.fromTo('.spinner', { opacity: 0 }, { opacity: 1, duration: 2 });
+};
+
+const hideSpinner = () => {
+  gsap.to('.spinner', { opacity: 0, duration: 2, onComplete: () => isLoading.value = false });
+};
+
 const submitForm = async () => {
   formSubmitted.value = true;
+  isLoading.value = true; // Mostrar el spinner
+  showSpinner(); // Animar entrada del spinner
 
   try {
     await store.saveAnswers(); // Guardar las respuestas en Google Sheets
@@ -53,11 +62,13 @@ const submitForm = async () => {
     }
   } catch (error) {
     console.error('Error al enviar respuestas:', error);
+  } finally {
+    isLoading.value = false; // Ocultar el spinner
+    hideSpinner(); // Animar salida del spinner
   }
 
   emit('complete');
 };
-
 
 onMounted(() => {
   gsap.to('.stars', {
@@ -74,14 +85,23 @@ const emit = defineEmits(['complete'])
 <template>
   <div class="min-h-screen relative overflow-hidden">
     <!-- Fondo animado de Star Wars -->
-    <div class="absolute inset-0 bg-black">
-      <div class="stars absolute inset-0">
+    <div class="absolute inset-0 bg-black flex items-center justify-center overflow-hidden">
+      <div class="stars w-[200%] h-[200%] rounded-full">
+        <!-- Estrellas -->
         <div v-for="i in 200" :key="i" class="star absolute w-1 h-1 bg-white rounded-full" :style="{
           left: `${Math.random() * 100}%`,
           top: `${Math.random() * 100}%`,
           animation: `twinkle ${1 + Math.random() * 4}s infinite`
-        }"></div>
+        }">
+        </div>
       </div>
+    </div>
+
+
+
+    <div v-show="isLoading" class="spinner fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+      <!-- Spinner -->
+      <div class="w-16 h-16 border-4 border-yellow-400 border-t-transparent rounded-full animate-spin"></div>
     </div>
 
     <!-- Content -->
@@ -101,11 +121,9 @@ const emit = defineEmits(['complete'])
 
         <template v-else-if="questions[currentQuestion].type === 'text'">
           <div class="flex flex-col gap-4">
-            <input type="text"
-              v-model="textInput"
+            <input type="text" v-model="textInput"
               class="px-4 py-2 rounded bg-gray-800/80 text-yellow-400 border border-yellow-400 focus:border-blue-500 outline-none placeholder-yellow-600"
-              placeholder="Tu respuesta, escribe"
-              @keyup.enter="textInput && handleTextAnswer($event.target.value)" />
+              placeholder="Tu respuesta, escribe" @keyup.enter="textInput && handleTextAnswer($event.target.value)" />
             <button
               @click="$event.target.previousElementSibling.value && handleTextAnswer($event.target.previousElementSibling.value)"
               class="px-6 py-2 bg-yellow-400 text-black rounded hover:bg-yellow-500 font-bold transition-colors duration-300">

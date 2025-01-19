@@ -74,10 +74,4 @@ onMounted(() => {
   letter-spacing: 2px;
 }
 
-@font-face {
-  font-family: 'SF Distant Galaxy';
-  src: url('https://db.onlinewebfonts.com/t/0c724f6aa457310440cf8949c615cbd7.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-}
 </style>
