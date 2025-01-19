@@ -19,7 +19,7 @@ const closeWindow = () => {
 </script>
 
 <template>
-  <div class="h-[100dvh] flex flex-col justify-center relative overflow-hidden">
+  <div class="min-h-screen flex flex-col justify-center relative overflow-hidden">
     <!-- Fondo animado de Star Wars -->
     <div class="absolute inset-0 bg-black flex items-center justify-center overflow-hidden">
       <div class="stars w-[200%] h-[200%] rounded-full">
