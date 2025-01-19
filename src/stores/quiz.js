@@ -41,7 +41,7 @@ export const useQuizStore = defineStore('quiz', {
         };
 
         // Enviar datos al Web App
-        const response = await fetch('https://script.google.com/macros/s/AKfycbxwqCLuHxNUUAxM9MmYLit3zjagKwZuYn5ivDrUGpwYMtQzrZPeumeAZ3CET5UNu30d/exec', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbxjTJi0CmYlz4PCD0oVx7-gjj0GXH6H7SdPNeoRunSyrZSJzleowxvj63cMW8Emtgyt/exec', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
