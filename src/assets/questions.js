@@ -2,38 +2,49 @@ export const questions = [
   {
     id: 1,
     type: 'multiple',
-    question: "¿A qué está jugando Yera?",
+    question: "¿Cuál es la mayor afición de Yera?",
     options: [
-      "Al Pokemon, con Elena",
-      "Al Street Fighter, para liberar tensiones",
-      "Al Bomberman, pero en realidad virtual",
-      "Calla, está roleando",
+      "Meterse con sus alumnos",
+      "Comer cosas ricas",
+      "Cursos, cursos everywhere",
+      "Sacarte las perras jugando al póker",
     ]
   },
   {
     id: 2,
     type: 'multiple',
-    question: 'Yera ha lanzado una nueva iniciativa al coro de "Muerte al..."',
+    question: "Si le pillas jugando, probablemente sea a...",
     options: [
-      "Heavy metal",
-      "Rock",
-      "Reguetón",
-      "Pop"
+      "Pokemon, con Elena",
+      "Street Fighter, para liberar tensiones",
+      "Bomberman, pero en realidad virtual",
+      "Calla, está roleando",
     ]
   },
   {
     id: 3,
     type: 'multiple',
-    question: "¿Cuál pondría Yera en el top?",
+    question: 'Yera ha lanzado una nueva iniciativa. "Muerte al..."',
     options: [
-      "Chuletón vasco",
-      "Hamburguesita del Delorean",
-      "Costillas a la barbacoa",
-      "Bistec con papas fritas"
+      "Verde, ensalada para las vacas",
+      "Bad Bunny ese, que aprenda a hablar",
+      "Reguetón, por dios",
+      "PHP. Más nunca, más nunca..."
     ]
   },
   {
     id: 4,
+    type: 'multiple',
+    question: "A Yera se le hace la boca agua al pensar en...",
+    options: [
+      "Chuletón vasco",
+      "Hamburguesita del Delorean",
+      "Costillas a la barbacoa",
+      "Bistec con patatas fritas"
+    ]
+  },
+  {
+    id: 5,
     type: 'multiple',
     question: "¿Cuál es su película favorita?",
     options: [
@@ -44,7 +55,7 @@ export const questions = [
     ]
   },
   {
-    id: 5,
+    id: 6,
     type: 'multiple',
     question: "El personaje de marvel favorito de Yera es sin duda...",
     options: [
@@ -55,7 +66,7 @@ export const questions = [
     ]
   },
   {
-    id: 6,
+    id: 7,
     type: 'multiple',
     question: "¿Cuántos patitos tiene Yera en su mesa?",
     options: [
@@ -66,20 +77,20 @@ export const questions = [
     ]
   },
   {
-    id: 7,
+    id: 8,
     type: 'multiple',
     question: "Yera es fan de la saga de...",
     options: [
       "Canción de Hielo y Fuego",
       "El Señor de los Anillos",
       "Harry Potter",
-      "Dune"
+      "Ninguna de las anteriores"
     ]
   },
   {
-    id: 8,
+    id: 9,
     type: 'multiple',
-    question: "¿Cuántas centésimas de siglo cumple Yera este año?",
+    question: "¿Cuántas centésimas de siglo cumple este año?",
     options: [
       "47",
       "48",
@@ -88,20 +99,20 @@ export const questions = [
     ]
   },
   {
-    id: 9,
+    id: 10,
     type: 'multiple',
-    question: "¡Estamos de celebración! ¿Qué está bebiendo Yera?",
+    question: "¡Estamos de celebración! Yera está bebiendo...",
     options: [
       "Coca-Cola light",
       "Awita fresca",
       "Nestea",
-      "Tropical ",
+      "Tropical",
     ]
   },
   {
-    id: 10,
+    id: 11,
     type: 'multiple',
-    question: "A Yera no le quites su...",
+    question: "Si quieres llevarte bien con Yera regálale...",
     options: [
       "Chocolate",
       "Tortitas",
@@ -110,9 +121,9 @@ export const questions = [
     ]
   },
   {
-    id: 11,
+    id: 12,
     type: 'text',
-    question: "¿Cuál es el nombre COMPLETO de Yera?",
+    question: "¿Cuál es el nombre completo de Yera?",
   },
 /*   {
     id: 12,
