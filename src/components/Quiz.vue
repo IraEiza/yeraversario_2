@@ -96,8 +96,7 @@ const emit = defineEmits(['complete'])
     </div>
 
     <!-- Content -->
-    <div class="relative z-10 min-h-screen flex flex-col items-center justify-center p-4">
-      <!-- Quiz compi -->
+    <div class="question-container relative z-10 min-h-screen flex flex-col items-center justify-center p-4">
       <div v-if="!formSubmitted" class="question-content p-8 rounded-lg backdrop-blur text-white max-w-2xl w-full">
         <h2 class="text-2xl mb-6 font-star-wars text-yellow-400">{{ questions[currentQuestion].question }}</h2>
 

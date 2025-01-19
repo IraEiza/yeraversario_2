@@ -30,7 +30,7 @@ const handleNameSubmit = () => {
 </script>
 
 <template>
-  <div class="identify min-h-screen bg-black flex flex-col items-center justify-center">
+  <div class="question-container identify min-h-screen bg-black flex flex-col items-center justify-center">
     <div class="question-content p-8 rounded-lg text-white max-w-2xl w-full">
         <h2 class="text-2xl mb-6 font-star-wars text-yellow-400">Identifícate, joven Padawan</h2>
         <div class="flex gap-4">
