@@ -9,7 +9,7 @@ import Ranking from './components/Ranking.vue'
 import { useQuizStore } from './stores/quiz'
 
 const store = useQuizStore()
-const currentStep = ref('identify') // 'intro', 'messages', 'identify', 'quiz', 'ranking', 'thanks'
+const currentStep = ref('thanks') // 'intro', 'messages', 'identify', 'quiz', 'ranking', 'thanks'
 
 const handleStepComplete = (step) => {
   switch (step) {

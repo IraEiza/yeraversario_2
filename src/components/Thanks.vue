@@ -34,13 +34,13 @@ const closeWindow = () => {
     </div>
 
     <!-- Contenido -->
-    <div class="relative z-10 min-h-screen flex flex-col items-center justify-center text-center p-4">
-      <h1 class="text-4xl font-star-wars text-yellow-400 mb-6">
+    <div class="relative z-10 min-h-screen flex flex-col items-center justify-between text-center px-4 py-10">
+      <h1 class="text-3xl font-star-wars text-yellow-400 mb-6">
         ¡Gracias por participar, joven Padawan!
       </h1>
-      <img src="../assets/darth_vader.avif" alt="Yoda" class="yoda-image w-64 opacity-1 my-8" />
+      <img src="../assets/darth_vader.avif" alt="Yoda" class="w-52 opacity-1" />
       <!-- Mensaje adaptado -->
-      <p class="text-xl text-yellow-300 my-8 flex flex-col sm:flex-row sm:items-center sm:justify-center gap-2">
+      <p class="text-xl text-yellow-300 flex flex-col sm:flex-row sm:items-center sm:justify-center gap-2">
         <span>Que la fuerza te acompañe</span>
         <img src="../assets/laser.png" class="w-8 mx-0 sm:mx-4 self-center">
         <span>¡Nos vemos mañana, >:) !</span>
