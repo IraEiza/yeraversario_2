@@ -31,61 +31,8 @@ onMounted(() => {
 })
 
 const handleChoice = (isYeray) => {
-  // Quitar todo el if cuando lo vaya a hacer Yera
-  if (isYeray) {
-    // Ocultar botones inmediatamente
-    showButtons.value = false;
-
-    // Ocultar pregunta con animación
-    gsap.to('.question', {
-      opacity: 0,
-      y: -20,
-      duration: 0.5,
-      onComplete: () => {
-        showQuestion.value = false;
-
-        // Mostrar mensaje temporal con animación
-        const tempMessage = document.querySelector('.temp-message');
-        tempMessage.style.display = 'block';
-        gsap.fromTo(
-          '.temp-message',
-          { opacity: 0, y: 20 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.5,
-            onComplete: () => {
-              setTimeout(() => {
-                // Ocultar mensaje temporal con animación
-                gsap.to('.temp-message', {
-                  opacity: 0,
-                  y: 20,
-                  duration: 0.5,
-                  onComplete: () => {
-                    tempMessage.style.display = 'none';
-
-                    // Mostrar pregunta y botones nuevamente
-                    showQuestion.value = true;
-                    showButtons.value = true;
-                    gsap.to(['.question', '.buttons'], {
-                      opacity: 1,
-                      y: 0,
-                      duration: 0.5,
-                    });
-                  },
-                });
-              }, 2000); // Tiempo antes de ocultar el mensaje
-            },
-          }
-        );
-      },
-    });
-
-  } else {
-    store.setUser(isYeray ? 'Yeray' : 'Guest', isYeray)
-    emit('complete')
-  }
-
+  store.setUser(isYeray ? 'Yeray' : 'Guest', isYeray)
+  emit('complete')
 }
 </script>
 

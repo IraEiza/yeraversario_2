@@ -5,9 +5,14 @@ import { gsap } from 'gsap';
 import confetti from 'canvas-confetti';
 
 const store = useQuizStore();
-const showRanking = ref(false);
 
-onMounted(() => {
+onMounted(async () => {
+  try {
+    await store.compareAnswers();
+  } catch (error) {
+    console.log('Miedo: ', error)
+  }
+
   confetti({
     particleCount: 100,
     spread: 70,
@@ -33,8 +38,8 @@ onMounted(() => {
 
 <template>
   <div class="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black flex items-center justify-center p-4">
-    <div class="ranking-container bg-black/70 border border-yellow-500 p-8 rounded-lg shadow-lg text-yellow-400 max-w-2xl w-full opacity-0 transform translate-y-10">
-      <h2 class="text-4xl font-star-wars mb-8 text-center tracking-widest">¡Ranking de Amigos!</h2>
+    <div class="ranking-container bg-black/70 border border-yellow-500 p-8 rounded-lg shadow-lg text-yellow-400 max-w-2xl w-full opacity-0 transform translate-y-10 my-10">
+      <h2 class="text-4xl font-star-wars mb-8 text-center tracking-widest">¡El Yera-Ranking!</h2>
 
       <div class="space-y-6">
         <div

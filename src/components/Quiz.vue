@@ -57,9 +57,6 @@ const submitForm = async () => {
 
   try {
     await store.saveAnswers(); // Guardar las respuestas en Google Sheets
-    if (store.isYeray) {
-      await store.compareAnswers();
-    }
   } catch (error) {
     console.error('Error al enviar respuestas:', error);
   } finally {

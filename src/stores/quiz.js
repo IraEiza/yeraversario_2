@@ -55,16 +55,52 @@ export const useQuizStore = defineStore('quiz', {
         console.error('Error al conectar con el Web App:', error);
       }
     },
-    
 
     async compareAnswers() {
-      if (!this.isYeray) return
-
-      this.ranking = [
-        { name: 'Ana', score: 95, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Ana' },
-        { name: 'Carlos', score: 85, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Carlos' },
-        { name: 'María', score: 75, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Maria' }
-      ]
+      if (!this.isYeray) return;
+    
+      try {
+        const response = await fetch(
+          'https://script.google.com/macros/s/AKfycbyR18tXGDjd2Z_c5lrGLM8UDdqwamutvWnFT8Oy66ZhGt8cr0Angl4jfakyfibdzWhO/exec'
+        );
+        const result = await response.json();
+    
+        if (result.status === 'success') {
+          const { teamAnswers, yerayAnswers } = result.data;
+    
+          // Asegúrate de que hay respuestas de Yeray
+          if (!yerayAnswers || yerayAnswers.length === 0) {
+            console.error('No se encontraron respuestas de Yeray.');
+            return;
+          }
+    
+          const yerayCorrectAnswers = yerayAnswers[0]; // Respuestas correctas de Yeray
+    
+          // Calcular el ranking basado en las respuestas correctas
+          this.ranking = teamAnswers.map(entry => {
+            const totalQuestions = Object.keys(entry).filter(key => key.startsWith('Question')).length;
+            const correctAnswers = Object.keys(entry).filter(key => {
+              // Compara las respuestas del equipo con las de Yeray
+              return key.startsWith('Question') && entry[key] === yerayCorrectAnswers[key];
+            }).length;
+    
+            const score = Math.round((correctAnswers / totalQuestions) * 100);
+    
+            return {
+              name: entry.Name,
+              score,
+              avatar: entry.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${entry.Name}`,
+            };
+          });
+    
+          // Ordenar por puntaje descendente
+          this.ranking.sort((a, b) => b.score - a.score);
+        } else {
+          console.error('Error al obtener respuestas:', result.message);
+        }
+      } catch (error) {
+        console.error('Error al conectar con el App Script:', error);
+      }
     }
   }
 })
